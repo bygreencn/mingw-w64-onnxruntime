@@ -29,6 +29,8 @@ jobs:
             mingw-w64-x86_64-re2
             mingw-w64-x86_64-spdlog
             mingw-w64-x86_64-toolchain
+      - name: Put MSYS2_MinGW64 on PATH
+        run: echo "D:/a/_temp/msys64/mingw64/bin" >> $GITHUB_PATH
       - name: CI-Build
         run: |
           ./ci.sh
