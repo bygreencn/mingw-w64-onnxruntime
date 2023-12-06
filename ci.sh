@@ -23,4 +23,4 @@ git submodule update --init --recursive
 
 ./build.sh --config Release --minimal_build --parallel --compile_no_warning_as_error \
  --skip_submodule_sync --disable_ml_ops --disable_exceptions \
- --disable_rtti --enable_reduced_operator_type_support --skip_tests
+ --disable_rtti --enable_reduced_operator_type_support --skip_tests --cmake_generator "MinGW Makefiles"
