@@ -20,32 +20,7 @@ pacman -U --noconfirm \
 git clone https://github.com/microsoft/onnxruntime.git
 cd onnxruntime
 git submodule update --init --recursive
-cmake \
-  -B build-shared \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX=/mingw64 \
-  -DProtobuf_USE_STATIC_LIBS=ON \
-  -Deigen_SOURCE_PATH=/mingw64/include/eigen3 \
-  -Donnxruntime_BUILD_BENCHMARKS=OFF \
-  -Donnxruntime_BUILD_SHARED_LIB=ON \
-  -Donnxruntime_BUILD_UNIT_TESTS=OFF \
-  -Donnxruntime_ENABLE_PYTHON=OFF \
-  -Donnxruntime_ENABLE_STATIC_ANALYSIS=OFF \
-  -Donnxruntime_ENABLE_TRAINING=OFF \
-  -Donnxruntime_GENERATE_TEST_REPORTS=OFF \
-  -Donnxruntime_PREFER_SYSTEM_LIB=ON \
-  -Donnxruntime_RUN_ONNX_TESTS=OFF \
-  -Donnxruntime_USE_AVX2=ON \
-  -Donnxruntime_USE_AVX512=ON \
-  -Donnxruntime_USE_AVX=ON \
-  -DCMAKE_C_FLAGS="/GL /MP /Zi /arch:AVX2" \
-  -DCMAKE_CXX_FLAGS="/EHsc /GL /MP /Zi /arch:AVX2" \
-  -Donnxruntime_USE_CUDA=OFF \
-  -Donnxruntime_USE_DNNL=OFF \
-  -Donnxruntime_USE_FULL_PROTOBUF=ON \
-  -Donnxruntime_USE_MPI=ON \
-  -Donnxruntime_USE_OPENMP=ON \
-  -Donnxruntime_USE_PREINSTALLED_EIGEN=ON \
-  -G'MSYS Makefiles' \
-  -S cmake
-mingw32-make -C build-shared VERBOSE=1
+
+./build.sh --config Release --minimal_build --parallel --compile_no_warning_as_error \
+ --skip_submodule_sync --disable_ml_ops --disable_exceptions \
+ --disable_rtti --enable_reduced_operator_type_support --skip_tests
